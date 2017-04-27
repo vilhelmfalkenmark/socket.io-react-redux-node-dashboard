@@ -1,13 +1,12 @@
-import axios from 'axios';
-export const TODO_ADDED = 'TODO_ADDED';
-export const TODO_DELETED = 'TODO_DELETED';
+export const ADD_TODO = 'ADD_TODO';
 
-export function addTodo(todoObject) { // <-- Non ASYNC ACTION
- return {type: 'TODO_ADDED', payload: todoObject }
+
+export function addTodo(todoObject) {
+ return {type: ADD_TODO, payload: todoObject }
 }
 
 
 
-export function addResponse(todoObject) { // <-- Non ASYNC ACTION
- return {type: 'SOCKET_RESPONSE_TODO', payload: todoObject }
+export function addResponse(todoObject) {
+ return {type: 'SERVER_RESPONSE_ADD_TODO', payload: todoObject }
 }

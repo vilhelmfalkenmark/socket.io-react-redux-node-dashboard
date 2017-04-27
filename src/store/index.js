@@ -6,8 +6,11 @@ import rootReducer from "../reducers"
 import io from 'socket.io-client';
 import {startSocket, socketMiddleWare} from '../socket';
 
+const reduxDevTools =  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
 const middleware = applyMiddleware(socketMiddleWare, promise(), thunk, logger())
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);
+
+const store = createStore(rootReducer, reduxDevTools, middleware);
 
 startSocket(store);
 

@@ -29,7 +29,7 @@ class App extends Component {
   const { todos } = this.props;
   return (
    <div>
-    <h1>React-Redux Boilerplate</h1>
+    <h1>React-redux socket.io</h1>
     <input type='text' onChange={(e) => this.setState({input: e.target.value})} />
     <button onClick={this.addTodo}>Lägg till ny sak</button>
     <ul>

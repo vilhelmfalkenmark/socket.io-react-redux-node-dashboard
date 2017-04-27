@@ -2,7 +2,7 @@ import initialState from "../store/InitialState";
 
 export default function todos(state = initialState.todos, action) {
 
- if(action.type === 'SOCKET_RESPONSE_TODO') {
+ if(action.type === 'SERVER_RESPONSE_ADD_TODO') {
   return state.concat(action.payload);
  }
 
