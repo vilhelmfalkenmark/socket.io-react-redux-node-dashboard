@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  &:before, &:after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+}

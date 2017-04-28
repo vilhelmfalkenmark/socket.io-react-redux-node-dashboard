@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-
 import Todo from "./Todo";
+import styles from "../styles/css/stylesheet.css";
 
 class App extends Component {
  constructor() {
@@ -9,14 +9,36 @@ class App extends Component {
    this.state = {
     input: ''
    }
+   this.handleChange = this.handleChange.bind(this);
    this.addTodo = this.addTodo.bind(this);
    this.deleteTodo = this.deleteTodo.bind(this);
  }
 
+ componentDidMount() {
+  this.props.fetchTodos();
+  this.props.updateConnectedUsers(1);
+ }
+
+ componentWillUnMount() {
+  this.props.updateConnectedUsers(-1);
+ }
+
+ handleChange(event) {
+  this.setState({
+   input: event.target.value
+  })
+  if(event.key === 'Enter') {
+   const newTodo = {
+    task: this.state.input
+   }
+   this.props.addTodo(newTodo);
+  }
+ }
+
+
  addTodo() {
   const newTodo = {
-   task: this.state.input,
-   id: Date.now()
+   task: this.state.input
   }
   this.props.addTodo(newTodo);
  }
@@ -26,15 +48,15 @@ class App extends Component {
  }
 
  render() {
-  const { todos } = this.props;
+  const { todos, connectedUsers } = this.props;
   return (
-   <div>
-    <h1>React-redux socket.io</h1>
-    <input type='text' onChange={(e) => this.setState({input: e.target.value})} />
-    <button onClick={this.addTodo}>Lägg till ny sak</button>
+   <div className={styles.container}>
+    <h1>Att göra lista </h1>
+    <h2>{connectedUsers} användare är anslutna </h2>
+    <input type='text' onKeyPress={this.handleChange} />
     <ul>
      {
-      todos.map((todo, index) => <Todo key={index} todo={todo} deleteTodo={this.deleteTodo} />)
+      todos.map((todo, index) => <Todo key={todo._id} todo={todo} deleteTodo={this.deleteTodo} />)
      }
     </ul>
    </div>
@@ -42,10 +64,7 @@ class App extends Component {
  }
 }
 
-App.PropTypes = {
- todo: PropTypes.string,
- requiredFunc: PropTypes.func.isRequired
-}
+
 
 
 export default App;

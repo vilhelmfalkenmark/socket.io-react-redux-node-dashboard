@@ -1,14 +1,7 @@
 const initialState = {
- todos: [
-  {
-   task: 'Klippa gräset',
-   id: 1
-  },
-  {
-   task: 'Måla staketet',
-   id: 2
-  }],
-  otherStuff: []
+ todos: [],
+ otherStuff: [],
+ connectedUsers: 0
 }
 
 export default initialState;

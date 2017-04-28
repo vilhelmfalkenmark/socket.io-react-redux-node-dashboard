@@ -3,24 +3,16 @@ import PropTypes from 'prop-types';
 class Todo extends Component {
 
  render() {
-  const { todo: {task, id} } = this.props;
+  const { todo: {task, done, _id} } = this.props;
   return (
    <li>
      {task}
-     <button onClick={this.props.deleteTodo.bind(this, id)}>Radera</button>
+     <button onClick={this.props.deleteTodo.bind(this, _id)}>Radera</button>
    </li>
   )
  }
 }
 
-Todo.PropTypes = {
- // todo: PropTypes.shape({
- //   task: PropTypes.number,
- //   id: PropTypes.number
- // })
- todo: PropTypes.string,
- requiredFunc: PropTypes.func.isRequired
-}
 
 
 export default Todo;
