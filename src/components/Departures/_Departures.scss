@@ -1,0 +1,4 @@
+.transportation {
+  @include flex-gtr-col(2,$base);
+  @include card();
+}

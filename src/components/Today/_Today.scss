@@ -1,0 +1,38 @@
+.todayContainer {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-between;
+}
+.dateBox {
+  @include flex-row();
+}
+.day {
+  font-size: 38px;
+  padding-right: $base;
+  @include flex-position(center);
+  h4 {
+    margin: 0;
+  }
+}
+.monthAndYear {
+  @include flex-position(center);
+  h5 {
+    margin: $base/5 0;
+    &:nth-of-type(2) {
+      font-weight: 300;
+      color: $medium-grey;
+    }
+  }
+}
+.weekDay {
+  @include flex-position(center);
+  h5 {
+    font-size: 20px;
+    margin: 0;
+  }
+  p {
+    color: $medium-grey;
+    font-size: 12px;
+    margin: 0;
+  }
+}

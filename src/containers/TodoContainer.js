@@ -1,12 +1,10 @@
 import {connect} from "react-redux";
-import App from "../components/App";
+import TodoList from "../components/TodoList/TodoList";
 import {fetchTodos, addTodo, deleteTodo} from "../actions/TodoActions";
-import {updateConnectedUsers} from "../actions/UserActions";
 
 function mapStateToProps(state) {
     return ({
-     todos: state.todos,
-     connectedUsers: state.users
+     todos: state.todos
     })
 }
 
@@ -20,12 +18,9 @@ function mapDispatchToProps(dispatch) {
         },
         deleteTodo: (todoID) => {
             dispatch(deleteTodo(todoID))
-        },
-        updateConnectedUsers: (count) => {
-            dispatch(updateConnectedUsers(count))
         }
     })
 }
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
-export default AppContainer;
+const TodoContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList)
+export default TodoContainer;

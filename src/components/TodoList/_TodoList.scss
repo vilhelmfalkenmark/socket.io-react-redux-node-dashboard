@@ -1,0 +1,31 @@
+.todolist {
+  @include flex-gtr-col(2,$base);
+  @include card();
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+}
+.todo_item {
+  margin: 2*$base 0;
+  position: relative;
+  // background-color: red;
+  border-bottom: 1px solid $light-grey;
+}
+.todo_task {
+  max-width: 70%;
+}
+.todo_buttons {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  width: 40px;
+}
+.delete_btn {
+  outline: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px solid $red;
+}

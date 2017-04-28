@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import Todo from "./Todo";
-import styles from "../styles/css/stylesheet.css";
+import TodoItem from "./TodoItem";
+import TodayContainer from "../../containers/TodayContainer";
 
-class App extends Component {
+import styles from "../../styles/css/stylesheet.css";
+
+class TodoList extends Component {
  constructor() {
   super()
    this.state = {
@@ -16,11 +18,11 @@ class App extends Component {
 
  componentDidMount() {
   this.props.fetchTodos();
-  this.props.updateConnectedUsers(1);
+  // this.props.updateConnectedUsers(1);
  }
 
  componentWillUnMount() {
-  this.props.updateConnectedUsers(-1);
+  // this.props.updateConnectedUsers(-1);
  }
 
  handleChange(event) {
@@ -48,18 +50,18 @@ class App extends Component {
  }
 
  render() {
-  const { todos, connectedUsers } = this.props;
+  const { todos } = this.props;
   return (
-   <div className={styles.container}>
-    <h1>Att göra lista </h1>
-    <h2>{connectedUsers} användare är anslutna </h2>
-    <input type='text' onKeyPress={this.handleChange} />
+   <section className={styles.todolist}>
+    <TodayContainer />
+    <h2>Att göra lista </h2>
+    <input type='text' onKeyPress={this.handleChange} className={styles.text_input}/>
     <ul>
      {
-      todos.map((todo, index) => <Todo key={todo._id} todo={todo} deleteTodo={this.deleteTodo} />)
+      todos.map((todo, index) => <TodoItem key={todo._id} todo={todo} deleteTodo={this.deleteTodo} />)
      }
     </ul>
-   </div>
+   </section>
   )
  }
 }
@@ -67,4 +69,4 @@ class App extends Component {
 
 
 
-export default App;
+export default TodoList;

@@ -6,11 +6,43 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito',Arial, sans-serif;
+  min-height: 100vh;
+  background-color: $beige;
+  color: $text;
 }
 
+
 .container {
-    width: 90%;
-    height: 80px;
-    margin: 0 auto;
+  @include flex-row();
+  padding: $base;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.col_4 {
+  @include flex-gtr-col(3,$base);
+}
+.col_6 {
+  @include flex-gtr-col(2,$base);
+}
+
+//////////////////////////////////////////
+// Lists
+//////////////////////////////////////////
+.list {
+
+}
+//////////////////////////////////////////
+// Forms
+//////////////////////////////////////////
+.text_input {
+  width: 100%;
+  height: 40px;
+  padding: $base 0;
+  font-size: 18px;
+  outline: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }

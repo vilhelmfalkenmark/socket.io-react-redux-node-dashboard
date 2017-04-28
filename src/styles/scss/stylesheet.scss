@@ -2,3 +2,11 @@
 @import 'grid';
 @import 'mixins';
 @import 'main';
+@import 'normalize';
+
+//////////////////////////////////////////
+// Components
+//////////////////////////////////////////
+@import "../../components/TodoList/_TodoList.scss";
+@import "../../components/Departures/_Departures.scss";
+@import "../../components/Today/_Today.scss";

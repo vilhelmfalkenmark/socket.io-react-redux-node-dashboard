@@ -6,7 +6,7 @@ import store from "./store";
 import { AppContainer as ReactHotLoader } from 'react-hot-loader';
 // AppContainer is a necessary wrapper component for HMR
 
-import AppContainer from './containers/AppContainer';
+import Dashboard from './components/Dashboard';
 
 const render = (Component) => {
   ReactDOM.render(
@@ -19,12 +19,12 @@ const render = (Component) => {
   );
 };
 
-render(AppContainer);
+render(Dashboard);
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./containers/AppContainer', () => {
-    render(AppContainer)
+  module.hot.accept('./components/Dashboard', () => {
+    render(Dashboard)
   });
 }
 
