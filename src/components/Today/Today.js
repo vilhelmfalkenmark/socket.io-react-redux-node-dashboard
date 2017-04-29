@@ -2,13 +2,48 @@ import React, { Component } from "react";
 import styles from "../../styles/css/stylesheet.css";
 
 class Today extends Component {
- componentDidMount() {
-  this.props.fetchToday()
+ constructor() {
+  super()
+  this.state = {
+   intervalID: 0,
+   hour: null,
+   minute: null
+  }
+
+  this.updateClock = this.updateClock.bind(this);
+
  }
+
+ componentDidMount() {
+  this.props.fetchToday();
+
+  const id = window.setInterval( () => {
+   this.updateClock();
+    }, 1000);
+   this.setState({
+    intervalID: id
+   })
+ }
+
+ componentWillUnmount() {
+  window.clearInterval(this.state.intervalID);
+ }
+
+updateClock() {
+let now = new Date();
+ this.setState({
+  hour: now.getHours(),
+  minute: now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()
+ })
+}
+
  render() {
   const {week,day, monthName, names, weekDay,year} = this.props.today;
+  const {hour, minute } = this.state;
   return(
     <section className={styles.todayContainer}>
+
+     <h4 className={styles.clock}>{hour ? `${hour}:${minute}`: null}</h4>
       <div className={styles.dateBox}>
         <div className={styles.day}>
          <h4>{day}</h4>
@@ -20,6 +55,8 @@ class Today extends Component {
           </div>
         </div>
       </div>
+
+
       <div className={styles.weekDay}>
         <div>
          <h5>Vecka {week}</h5>
@@ -30,6 +67,8 @@ class Today extends Component {
           </p>
          </div>
       </div>
+
+
     </section>
   )
  }

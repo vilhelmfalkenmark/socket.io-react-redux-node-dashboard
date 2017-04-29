@@ -12,7 +12,7 @@ class TodoItem extends Component {
       <p>{task}</p>
      </div>
      <div className={styles.todo_buttons}>
-      <button onClick={this.props.deleteTodo.bind(this, _id)} className={styles.delete_btn}></button>
+      <button onClick={this.props.deleteTodo.bind(this, _id)} className={styles.btn_round_red}></button>
      </div>
    </li>
   )

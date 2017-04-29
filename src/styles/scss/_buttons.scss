@@ -1,0 +1,6 @@
+.btn_round_green {
+  @include roundBtn($green,45,"../assets/svg/cross-white.svg");
+}
+.btn_round_red {
+  @include roundBtn($red,0,"../assets/svg/cross-white.svg");
+}

@@ -4,35 +4,26 @@
     box-sizing: border-box;
   }
 }
-
 body {
   font-family: 'Nunito',Arial, sans-serif;
   min-height: 100vh;
   background-color: $beige;
   color: $text;
 }
-
-
 .container {
   @include flex-row();
   padding: $base;
   max-width: 1120px;
   margin: 0 auto;
 }
-
-.col_4 {
-  @include flex-gtr-col(3,$base);
-}
-.col_6 {
-  @include flex-gtr-col(2,$base);
-}
-
 //////////////////////////////////////////
 // Lists
 //////////////////////////////////////////
-.list {
-
+ul {
+  padding: 0;
+  list-style: none;
 }
+
 //////////////////////////////////////////
 // Forms
 //////////////////////////////////////////

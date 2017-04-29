@@ -6,6 +6,11 @@
 .dateBox {
   @include flex-row();
 }
+.clock {
+  font-size: 38px;
+  margin: 0;
+}
+
 .day {
   font-size: 38px;
   padding-right: $base;

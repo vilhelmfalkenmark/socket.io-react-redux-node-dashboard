@@ -1,4 +1,39 @@
-.transportation {
+.departures {
   @include flex-gtr-col(2,$base);
   @include card();
+}
+.departures_departures {
+  @include flex-row();
+}
+.departures_departures_col {
+  @include flex-gtr-col(2,15px);
+  &:nth-of-type(odd) {
+  }
+}
+.departures_departures_header {
+  border-bottom: 1px solid $medium-grey;
+}
+.departures_departures_col_row {
+  font-size: 12px;
+  border-bottom: 1px solid $light-grey;
+  span {
+    display: block;
+    margin-bottom: $base/3;
+  }
+}
+
+.departure_transportation_header {
+  display: flex;
+  align-content: space-around;
+  align-items: center;
+  button {
+    margin-right: $base/2;
+  }
+}
+
+.is_open {
+  display: block;
+}
+.is_closed {
+  display: none;
 }
