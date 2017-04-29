@@ -1,8 +1,14 @@
 const initialState = {
  todos: [],
  connectedUsers: 0,
- departures: [],
- today: {}
+ departures: {
+  data: [],
+  isFetching: true
+ },
+ today: {
+  data: {},
+  isFetching: true
+ }
 }
 
 export default initialState;

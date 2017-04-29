@@ -26,13 +26,11 @@ class TodoList extends Component {
  }
 
  handleChange(event) {
-  this.setState({
-   input: event.target.value
-  })
-  if(event.key === 'Enter') {
+  if(event.key === 'Enter' && event.target.value !== '') {
    const newTodo = {
-    task: this.state.input
+    task: event.target.value
    }
+   this.setState({input: ''})
    this.props.addTodo(newTodo);
   }
  }
@@ -55,7 +53,7 @@ class TodoList extends Component {
    <section className={styles.todolist}>
     <TodayContainer />
     <h2>Att göra lista </h2>
-    <input type='text' onKeyPress={this.handleChange} className={styles.text_input}/>
+    <input type='text' onKeyUp={this.handleChange} value={this.state.input} onChange={(e) => this.setState({input: e.target.value})} className={styles.text_input}/>
     <ul>
      {
       todos.map((todo, index) => <TodoItem key={todo._id} todo={todo} deleteTodo={this.deleteTodo} />)

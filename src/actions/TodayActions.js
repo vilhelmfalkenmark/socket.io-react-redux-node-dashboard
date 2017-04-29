@@ -10,6 +10,7 @@ export function fetchToday() {
     axios.get(`http://localhost:5000/api/today`)
     // axios.get(`http://api.dryg.net/dagar/v2.1/${dateURL()}`)
     .then((response) => {
+     console.log(response);
       dispatch({type: "TODAY_FETCHED", payload: response.data})
     })
     .catch((err) => {

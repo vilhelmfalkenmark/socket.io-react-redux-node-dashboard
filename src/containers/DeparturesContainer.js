@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Departures from "../components/Departures/Departures";
-import { fetchTodos } from "../actions/TodoActions";
+import { fetchDepartures } from "../actions/DepartureActions";
 
 function mapStateToProps(state) {
     return ({

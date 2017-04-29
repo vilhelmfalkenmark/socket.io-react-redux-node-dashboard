@@ -4,7 +4,7 @@ import Today from "../components/Today/Today";
 
 function mapStateToProps(state) {
     return ({
-     today: state.today
+     today: state.today.data
     })
 }
 
