@@ -1,9 +1,14 @@
-const initialState = {
+ const initialState = {
  todos: [],
  connectedUsers: 0,
  departures: {
-  data: [],
-  isFetching: true
+  departuresData: [],
+  fetchingDepartures: true
+ },
+ stations: {
+  stationsData: [],
+  fetchingStations: false,
+  stationsNotFetched: false
  },
  today: {
   data: {},

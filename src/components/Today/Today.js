@@ -9,20 +9,19 @@ class Today extends Component {
    hour: null,
    minute: null
   }
-
   this.updateClock = this.updateClock.bind(this);
-
  }
 
  componentDidMount() {
   this.props.fetchToday();
 
-  const id = window.setInterval( () => {
-   this.updateClock();
-    }, 1000);
-   this.setState({
-    intervalID: id
-   })
+  // NOTE Låt vara utkommenterat under utveckling
+  // const id = window.setInterval( () => {
+  //  this.updateClock();
+  //   }, 1000);
+  //  this.setState({
+  //   intervalID: id
+  //  })
  }
 
  componentWillUnmount() {
@@ -42,8 +41,8 @@ let now = new Date();
   const {hour, minute } = this.state;
   return(
     <section className={styles.todayContainer}>
-
-     <h4 className={styles.clock}>{hour ? `${hour}:${minute}`: null}</h4>
+     
+     {/* <h4 className={styles.clock}>{hour ? `${hour}:${minute}`: null}</h4> */}
       <div className={styles.dateBox}>
         <div className={styles.day}>
          <h4>{day}</h4>

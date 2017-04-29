@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router(); // get an instance of the express Router
 const axios = require('axios');
 const mockdata = require('../mockdata/departures.js');
-console.log(mockdata);
 // SL Realtidsinformation 4
 const realTimeApiKey = "152b19caf669418c88b48ce2c2ba0cee";
 
@@ -32,23 +31,15 @@ const appendStationName = (stationData) => {
     }
   }
   return "Stationsnamnet ej hittat";
-}
+};
 
 const cleanDepartures = (departures) => {
  return departures.map((departure) => {
    const stationData = departure.ResponseData;
-   stationData.StopAreaName = appendStationName(stationData)
-   for (var key in stationData) {
-     ////////////////////////////////////////////////
-     // ONLY DISPLAY THE 8 MOST UPCOMING DEPARTURES
-     ////////////////////////////////////////////////
-     if(Array.isArray(stationData[key]) && stationData[key].length > 8) {
-       stationData[key].splice(8,stationData[key].length)
-     }
-   }
+   stationData.StopAreaName = appendStationName(stationData);
    return stationData;
  });
-}
+};
 
 
 router.route('/').get((req, res) => {
@@ -62,6 +53,6 @@ router.route('/').get((req, res) => {
   // });
   // MOCK
   res.json({data: mockdata()})
-})
+});
 
 module.exports = router;

@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const events = require('events');
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/todo_list');
 
 //////////////////////////////////////////
@@ -13,7 +14,6 @@ mongoose.connect('mongodb://localhost/todo_list');
 //////////////////////////////////////////
 const socket = require("./socket");
 require('./socket')(io);
-
 
 //////////////////////////////////////////
 // REGULAR API
@@ -27,11 +27,8 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-const router = require('./routes/'); // get an instance of the express Router
-
-
-
-app.use('/api', router);
+const router = require('./routes/');
+app.use('/api', router); // <-- All regular api endpoints live on /api
 
 http.listen(port, () => {
   console.log(`Lyssnar på port ${port}`);

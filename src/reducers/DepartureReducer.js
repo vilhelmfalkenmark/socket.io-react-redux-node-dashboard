@@ -4,11 +4,10 @@ export default function departures(state = initialState.departures, action) {
 
  if(action.type === 'DEPARTURES_FETCHED') {
   return Object.assign({},state, {
-   data: action.payload.data,
-   isFetching: false
+   departuresData: action.payload.data,
+   fetchingDepartures: false
   });
  }
-
  else if(action.type === 'DEPARTURES_NOT_FETCHED') {
   return action.payload;
  }
