@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import { fetchStations, updateStations } from "../actions/StationActions";
+import { fetchStations, searchStations, updateStations, deleteStation } from "../actions/StationActions";
 import Stations from "../components/Stations/Stations";
 
 function mapStateToProps(state) {
@@ -10,13 +10,18 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return ({
-        fetchStations: (query) => {
-            dispatch(fetchStations(query))
+        fetchStations: () => {
+            dispatch(fetchStations())
+        },
+        searchStations: (query) => {
+            dispatch(searchStations(query))
         },
         updateStations: (stations) => {
             dispatch(updateStations(stations))
         },
-
+        deleteStation: (stationID) => {
+             dispatch(deleteStation(stationID))
+         },
     })
 }
 

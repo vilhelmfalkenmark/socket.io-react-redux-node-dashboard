@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var StationSchema = new Schema({
-    StationName: String,
-    StationID: String
+    name: String,
+    id: String
 });
 
-module.exports = mongoose.model('StationModel', StationModel);
+module.exports = mongoose.model('Station', StationSchema);

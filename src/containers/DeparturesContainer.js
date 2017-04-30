@@ -1,12 +1,10 @@
 import {connect} from "react-redux";
 import Departures from "../components/Departures/Departures";
 import { fetchDepartures } from "../actions/DepartureActions";
-import { fetchStations } from "../actions/StationActions";
 
 function mapStateToProps(state) {
     return ({
-     departures: state.departures,
-     stations: state.stations
+     departures: state.departures
     })
 }
 
@@ -14,9 +12,6 @@ function mapDispatchToProps(dispatch) {
     return ({
         fetchDepartures: () => {
             dispatch(fetchDepartures())
-        },
-        fetchStations: (query) => {
-            dispatch(fetchStations(query))
         }
     })
 }

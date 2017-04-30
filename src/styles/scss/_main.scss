@@ -9,11 +9,12 @@ body {
   min-height: 100vh;
   background-color: $beige;
   color: $text;
+  margin: 0;
 }
 .container {
   @include flex-row();
-  padding: $base;
-  max-width: 1120px;
+  padding: 0 $base;
+  max-width: 1420px;
   margin: 0 auto;
 }
 //////////////////////////////////////////

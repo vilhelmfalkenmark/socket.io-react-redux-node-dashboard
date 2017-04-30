@@ -6,55 +6,59 @@ class Stations extends Component {
  constructor() {
   super()
   this.state = {
-   input: 'Rosenlundsgatan',
+   input: 'Zinkensdamm',
    checkedStations: []
   }
-  this.fetchStations = this.fetchStations.bind(this);
+  this.searchStations = this.searchStations.bind(this);
   this.updateStations = this.updateStations.bind(this);
  }
 
  componentDidMount() {
-  this.props.fetchStations(this.state.input);
+  this.props.fetchStations();
  }
 
- fetchStations() {
-  this.props.fetchStations(this.state.input);
+ searchStations() {
+  this.props.searchStations(this.state.input);
  }
 
  updateStations() {
   this.props.updateStations(this.state.checkedStations);
  }
 
+ deleteStation(stationID) {
+  this.props.deleteStation(stationID);
+ }
 
- checkStation(StationID, StationName,checked) {
+
+ checkStation(name, id, checked) {
   const checkedStations = this.state.checkedStations;
 
   const isInCheckStation = (toggledObject) => {
    for (var i = 0; i < checkedStations.length; i++) {
-     if(checkedStations[i].StationID === toggledObject.StationID) {
+     if(checkedStations[i].id === toggledObject.id) {
       return i
      }
    }
    return false;
   };
 
-  if(isInCheckStation({StationID, StationName}) === false) {
-   checkedStations.push({StationID, StationName})
+  if(isInCheckStation({name, id}) === false) {
+   checkedStations.push({name, id})
   } else {
-   checkedStations.splice(isInCheckStation({StationID, StationName}), 1)
+   checkedStations.splice(isInCheckStation({name, id}), 1)
   }
-
   this.setState({checkedStations})
  }
 
  render() {
-  const { stations: {stationsData, fetchingStations, stationsNotFetched}} = this.props;
+  const { stations: {searchResults, myStations, fetchingStations,searchingStations, stationsNotFetched, }} = this.props;
   const {checkedStations, input } = this.state;
-  console.log(checkedStations);
+  console.log(checkedStations," checkedStations");
+  console.log(myStations," myStations");
   return (
    <section className={styles.stations}>
     <input type='text' value={input} onChange={(e) => this.setState({input: e.target.value})} placeholder="Sök station" className={styles.text_input}/>
-    <button onClick={this.fetchStations}>Sök stationer</button>
+    <button onClick={this.searchStations}>Sök stationer</button>
     {
      fetchingStations ? <p>Hämtar stationer</p> : null
     }
@@ -62,13 +66,29 @@ class Stations extends Component {
      stationsNotFetched ? <p>Kunde inte hämta stationer</p> : null
     }
     {
-      stationsData.map((station, index) => {
-       return <div key={index}><input type="" type="checkbox" value={stationsData.SiteId} onChange={this.checkStation.bind(this,station.SiteId, station.Name)}/>{station.Name}</div>
+      searchResults.map((searchResult, index) => {
+       return <div key={index}>
+                <input type="" type="checkbox" value={searchResult.SiteId} onChange={this.checkStation.bind(this, searchResult.Name, searchResult.SiteId)}/>
+                {searchResult.Name}
+               </div>
      })
     }
     {
      checkedStations.length > 0 ? <button onClick={this.updateStations}>Uppdatera stationer</button> : null
     }
+    <div>
+     <h4>Mina stationer</h4>
+    {
+     myStations.length > 0 ? myStations.map((station, index) => {
+       return <div key={index} onClick={this.deleteStation.bind(this, station._id)}>{station.name}<button>RADERA STATION</button></div>
+     }) : null
+    }
+    </div>
+
+
+
+
+
    </section>
   )
  }

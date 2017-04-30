@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const events = require('events');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/todo_list');
+mongoose.connect('mongodb://localhost/dashboard_app');
 
 //////////////////////////////////////////
 // SOCKET API

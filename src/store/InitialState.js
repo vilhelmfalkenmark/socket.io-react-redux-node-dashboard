@@ -6,8 +6,10 @@
   fetchingDepartures: true
  },
  stations: {
-  stationsData: [],
+  searchResults: [],
+  myStations: [],
   fetchingStations: false,
+  searchingStations: false,
   stationsNotFetched: false
  },
  today: {
