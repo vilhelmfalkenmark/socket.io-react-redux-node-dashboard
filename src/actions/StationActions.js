@@ -35,6 +35,8 @@ export function deleteStation(stationID) {
     axios.delete(`http://localhost:5000/api/stations/${stationID}`)
     .then((response) => {
       dispatch({type: "STATION_DELETED", payload: stationID})
+      dispatch(fetchDepartures());
+
     })
     .catch((err) => {
       dispatch({type: "COULD_NOT_DELETE_STATION", payload: err})
@@ -48,7 +50,7 @@ export function updateStations(stations) {
     axios.post("http://localhost:5000/api/stations", stations)
     .then((response) => {
       dispatch({type: "STATIONS_UPDATED", payload: response.data})
-      fetchDepartures() // <-- FETCH NEW DEPARTURES BASED ON NEW STATIONS
+      dispatch(fetchDepartures());
     })
     .catch((err) => {
       dispatch({type: "STATIONS_NOT_UPDATED", payload: err})

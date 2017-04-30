@@ -48,47 +48,6 @@ router.route('/')
  }).catch((err) => {
   res.json(err);
  })
-
-
-
-
-  // return new Promise((resolve, reject) => {
-  //  const newStations = req.body;
-  //  console.log(newStations," newStations i PROMISE");
-  //  // SAVE NEW STATIONS
-  //  newStations.map((newStation) => {
-  //   var station = new Station();
-  //   station.name = newStation.StationName;
-  //   station.id = newStation.StationID;
-  //   station.save((err) => {
-  //    if(err) {
-  //     console.log(err);
-  //    } else {
-  //     console.log("Success!");
-  //    }
-  //   })
-  //  });
-  // }).then(() => {
-  //   return new Promise((resolve, reject) => {
-  //    console.log("nu är det klart med sparningen!");
-  //   })
-  // })
-
-
-  // const callBack = () => {
-
-  // }
- // Station.find((err, stations) => {
- //   if (err) {
- //    res.send(err);
- //   } else {
- //    console.log("Det funkade!", stations);
- //    res.json({data: stations});
- //   }
- //  });
-
-  // RETURN ALL STATIONS IN DATABASE AS JSON
-
 })
 ///////////////////////////////////////////
 // DELETE
