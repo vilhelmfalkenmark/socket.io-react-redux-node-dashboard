@@ -10,6 +10,7 @@ body {
   background-color: $beige;
   color: $text;
   margin: 0;
+  // letter-spacing: 1px;
 }
 .container {
   @include flex-row();
@@ -37,4 +38,108 @@ ul {
   border-top: none;
   border-left: none;
   border-right: none;
+}
+$checkbox-primary: $green;
+
+@keyframes checkbox-bounce {
+  0% {
+    transform:scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+.checkbox {
+  opacity: 0;
+  position: relative;
+  z-index: 5;
+  vertical-align: top;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  &:checked {
+    + label {
+      span {
+        background-color: $checkbox-primary;
+        animation: checkbox-bounce .4s  ease-in-out;
+        &:after {
+          width: 16px;
+          background: white;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+        &:before {
+          width: 12px;
+          background: white;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+      }
+      &:hover { // copy the states for onMouseOver to avoid flickering
+        span {
+          background-color: $checkbox-primary;
+        }
+      }
+    }
+  }
+}
+.checkbox_label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex; // to make it easier to click
+    align-items: center;
+    // color: $medium-grey;
+    cursor: pointer;
+    span {
+      display: inline-block;
+      position: relative;
+      background-color: transparent;
+      width: 35px;
+      height: 35px;
+      transform-origin: center;
+      border: 2px solid $checkbox-primary;
+      border-radius: 50%;
+      vertical-align: -6px;
+      margin-right: 10px;
+      transition: background-color 150ms 100ms, transform 150ms cubic-bezier(.78,-1.22,.17,1.89); // custom ease effect for bouncy animation
+
+    &:before, &:after {
+      content: "";
+      width: 0px;
+      height: 2px;
+      border-radius: 2px; // so that the tick has nice rounded look
+      background: white;
+      position: absolute;
+      // transform: rotate(45deg);
+      transition: width 50ms ease 50ms;
+      transform-origin: 0% 0%;
+    }
+    &:before {
+      top: 14px;
+      left: 5px;
+      transform: rotate(35deg);
+    }
+    &:after {
+      transform: rotate(305deg);
+      top: 20px;
+      left: 13px;
+    }
+  }
+  // Time to add some life to it
+  &:hover {
+    span {
+      &:before {
+        width: 5px;
+        transition: width 100ms ease;
+      }
+
+      &:after {
+        width: 10px;
+        transition: width 150ms ease 100ms;
+      }
+    }
+  }
 }

@@ -9,9 +9,9 @@ class Departures extends Component {
  constructor() {
   super()
   this.state = {
-   intervalID: 0
+   intervalID: 0,
+   stationsOpen: false
   }
-  // this.fetchStations = this.fetchStations.bind(this);
  }
 
 
@@ -35,11 +35,23 @@ class Departures extends Component {
 
  render() {
   const { departures: { departuresData, fetchingDepartures} } = this.props;
+  const { stationsOpen } = this.state;
 
   return (
    <section className={styles.departures}>
-    <h2>SL</h2>
-    <StationsContainer />
+    <div className={styles.departures_header}>
+     <h2>SL</h2>
+     <div className={styles.departure_handle_stations}>
+      <span>Hantera stationer</span>
+     <button
+      className={stationsOpen ? styles.btn_round_red : styles.btn_round_green}
+      onClick={() => this.setState({stationsOpen: !stationsOpen})}>
+      </button>
+      </div>
+    </div>
+    <div className={stationsOpen ? styles.is_open : styles.is_closed}>
+     <StationsContainer />
+    </div>
     <div className={styles.departures_departures}>
      {
       !fetchingDepartures ? departuresData.map((departure, index) => {

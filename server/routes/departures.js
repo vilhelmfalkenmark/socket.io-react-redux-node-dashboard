@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router(); // get an instance of the express Router
+const router = express.Router(); 
 const axios = require('axios');
 const mockdata = require('../mockdata/departures.js');
 // SL Realtidsinformation 4

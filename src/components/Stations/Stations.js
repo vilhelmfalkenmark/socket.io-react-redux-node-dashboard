@@ -15,10 +15,14 @@ class Stations extends Component {
 
  componentDidMount() {
   this.props.fetchStations();
+  // this.props.searchStations(this.state.input);
  }
 
- searchStations() {
-  this.props.searchStations(this.state.input);
+ searchStations(event) {
+  if(event.key === 'Enter' && event.target.value !== '') {
+   this.setState({input: ''})
+   this.props.searchStations(event.target.value);
+  }
  }
 
  updateStations() {
@@ -53,41 +57,47 @@ class Stations extends Component {
  render() {
   const { stations: {searchResults, myStations, fetchingStations,searchingStations, stationsNotFetched, }} = this.props;
   const {checkedStations, input } = this.state;
-  console.log(checkedStations," checkedStations");
-  console.log(myStations," myStations");
   return (
    <section className={styles.stations}>
-    <input type='text' value={input} onChange={(e) => this.setState({input: e.target.value})} placeholder="Sök station" className={styles.text_input}/>
-    <button onClick={this.searchStations}>Sök stationer</button>
+    <input type='text' value={input} onKeyUp={this.searchStations} onChange={(e) => this.setState({input: e.target.value})} placeholder="Sök station" className={styles.text_input}/>
     {
      fetchingStations ? <p>Hämtar stationer</p> : null
     }
     {
      stationsNotFetched ? <p>Kunde inte hämta stationer</p> : null
     }
+    <ul>
     {
-      searchResults.map((searchResult, index) => {
-       return <div key={index}>
-                <input type="" type="checkbox" value={searchResult.SiteId} onChange={this.checkStation.bind(this, searchResult.Name, searchResult.SiteId)}/>
-                {searchResult.Name}
-               </div>
-     })
+     // Searchresults
+      searchResults.map((searchResult, index) =>
+        <li key={index} className={styles.stations_search_list}>
+          <input type="checkbox"
+                 className={styles.checkbox}
+                 name={searchResult.Name}
+                 value={searchResult.SiteId}
+                 onChange={this.checkStation.bind(this, searchResult.Name, searchResult.SiteId)}
+           />
+           <label htmlFor={searchResult.Name} className={styles.checkbox_label}><span></span>{searchResult.Name}</label>
+         </li>
+     )
     }
+    </ul>
     {
-     checkedStations.length > 0 ? <button onClick={this.updateStations}>Uppdatera stationer</button> : null
+     checkedStations.length > 0 ? <button onClick={this.updateStations} className={styles.standard_btn_light}>Lägg till stationer</button> : null
     }
     <div>
      <h4>Mina stationer</h4>
-    {
-     myStations.length > 0 ? myStations.map((station, index) => {
-       return <div key={index} onClick={this.deleteStation.bind(this, station._id)}>{station.name}<button>RADERA STATION</button></div>
-     }) : null
-    }
+     <ul>
+      {
+       myStations.length > 0 ? myStations.map((station, index) => {
+         return <li key={index} className={styles.stations_mystations_list}>
+                 <button className={styles.btn_round_red} onClick={this.deleteStation.bind(this, station._id)}></button>
+                 <span>{station.name}</span>
+                </li>
+       }) : <h4>Jag har inte lagt till några stationer än :(</h4>
+      }
+    </ul>
     </div>
-
-
-
-
 
    </section>
   )

@@ -4,3 +4,6 @@
 .btn_round_red {
   @include roundBtn($red,0,"../assets/svg/cross-white.svg");
 }
+.standard_btn_light {
+  @include standardBtn(white,$text);
+}

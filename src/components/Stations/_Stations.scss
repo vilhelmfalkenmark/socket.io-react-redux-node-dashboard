@@ -1,0 +1,15 @@
+.stations_search_list {
+  margin-bottom: $base;
+  position: relative;
+}
+
+
+
+.stations_mystations_list {
+  margin-bottom: $base;
+  display: flex;
+  align-items: center;
+  .btn_round_red {
+    margin-right: $base/2;
+  }
+}

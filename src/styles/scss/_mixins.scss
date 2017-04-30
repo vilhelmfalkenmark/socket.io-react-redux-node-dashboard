@@ -7,7 +7,7 @@
 // Cirkel pulse
 //////////////////////////////////////////
 @mixin pulse($color,$scale,$borderWidth) {
-display: block;
+// display: block;
 &:after {
   content: "";
   border: $borderWidth solid $color;
@@ -61,5 +61,28 @@ display: block;
   }
   &:hover {
     background-color: darken($color, 15%);
+  }
+}
+//////////////////////////////////////////
+// Round button
+//////////////////////////////////////////
+@mixin standardBtn($color, $background) {
+  background-color: $background;
+  color: $color;
+  padding: $base 2*$base;
+  border: 2px solid $color;
+  // border-bottom: 2px solid $medium-grey;
+  outline: none;
+  border-radius: 9px;
+  // font-weight: bold;
+  font-size: 14px;
+  // text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: darken($background, 15%);
+  }
+  &:active {
+    background-color: darken($background, 25%);
   }
 }

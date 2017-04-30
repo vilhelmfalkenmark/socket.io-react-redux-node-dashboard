@@ -2,6 +2,23 @@
   @include flex-gtr-col(2,$base);
   @include card();
 }
+.departures_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.departure_handle_stations {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 14px;
+  }
+  button {
+    margin-left: $base/2;
+  }
+}
+
+
 .departures_departures {
   @include flex-row();
 }
