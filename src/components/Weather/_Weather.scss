@@ -1,0 +1,10 @@
+.weather {
+  @include flex-gtr-col(3,$base);
+  @include card();
+}
+.weather_weather_times {
+  @include flex-row();
+}
+.weather_weather_time {
+  @include flex-gtr-col(2, 5px);
+}

@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import { fetchStations, searchStations, updateStations, deleteStation } from "../actions/StationActions";
+import { fetchStations, searchStations, updateStations, deleteStation, checkStation } from "../actions/StationActions";
 import Stations from "../components/Stations/Stations";
 
 function mapStateToProps(state) {
@@ -21,6 +21,9 @@ function mapDispatchToProps(dispatch) {
         },
         deleteStation: (stationID) => {
              dispatch(deleteStation(stationID))
+         },
+        checkStation: (stationObject) => {
+             dispatch(checkStation(stationObject))
          },
     })
 }

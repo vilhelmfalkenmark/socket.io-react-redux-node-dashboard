@@ -1,5 +1,5 @@
 @mixin card() {
-  padding: 2*$base;
+  padding: $base;
   background-color: white;
   border-bottom: 2px solid darken($light-grey,10%);
 }

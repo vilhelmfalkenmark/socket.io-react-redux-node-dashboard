@@ -8,6 +8,9 @@
  stations: {
   searchResults: [],
   myStations: [],
+  myStationIDs: [],
+  checkedStations: [],
+  checkedStationsIds: [],
   fetchingStations: false,
   searchingStations: false,
   stationsNotFetched: false
@@ -15,6 +18,10 @@
  today: {
   data: {},
   isFetching: true
+ },
+ weather: {
+  fetchingWeather: false,
+  data: []
  }
 }
 

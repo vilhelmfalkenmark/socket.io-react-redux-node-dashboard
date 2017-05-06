@@ -14,7 +14,6 @@ class Departures extends Component {
   }
  }
 
-
  componentDidMount() {
   this.props.fetchDepartures();
 

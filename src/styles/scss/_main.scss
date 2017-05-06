@@ -61,7 +61,7 @@ $checkbox-primary: $green;
   cursor: pointer;
   height: 35px;
   width: 35px;
-  &:checked {
+  &:checked  {
     + label {
       span {
         background-color: $checkbox-primary;
@@ -84,6 +84,23 @@ $checkbox-primary: $green;
       }
     }
   }
+  &.is_selected {
+    + label {
+      span {
+        background-color: $medium-grey;
+        &:after {
+          width: 16px;
+          background: white;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+        &:before {
+          width: 12px;
+          background: white;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+      }
+    }
+  }
 }
 .checkbox_label {
     position: absolute;
@@ -91,7 +108,6 @@ $checkbox-primary: $green;
     top: 0;
     display: flex; // to make it easier to click
     align-items: center;
-    // color: $medium-grey;
     cursor: pointer;
     span {
       display: inline-block;

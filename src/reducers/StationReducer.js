@@ -13,7 +13,8 @@ export default function stations(state = initialState.stations, action) {
  else if(action.type === 'STATIONS_FETCHED') {
   return Object.assign({},state,{
     fetchingStations: false,
-    myStations: action.payload.data
+    myStations: action.payload.data,
+    myStationIDs: action.payload.data.map((station) => station.id)
   })
  }
 
@@ -49,8 +50,13 @@ export default function stations(state = initialState.stations, action) {
  // DELETE STATION
  //////////////////////////////////////////
  else if(action.type === 'STATION_DELETED') {
+
+  const clearIds = stateInstance => stateInstance.filter(id => id !== action.payload.siteId);
+
   return Object.assign({}, state,{
-    myStations: state.myStations.filter((station) => station._id !== action.payload)
+    myStations: state.myStations.filter(station => station._id !== action.payload._id),
+    myStationIDs: clearIds(state.myStationIDs),
+    checkedStationsIds: clearIds(state.checkedStationsIds)
   })
  }
 
@@ -64,12 +70,41 @@ export default function stations(state = initialState.stations, action) {
  // UPDATING/ADDING NEW STATIONS
  //////////////////////////////////////////
  else if(action.type === 'STATIONS_UPDATED') {
-  return Object.assign({}, state,{
-    myStations: state.myStations.concat(action.payload.data)
+  return Object.assign({}, state, {
+    myStations: action.payload.data,
+    myStationIDs: action.payload.data.map((station) => station.id),
+    checkedStations: []
   })
  }
 
+ //////////////////////////////////////////
+ // CHECK STATIONS IN BOX NON-ASYNC ACTION
+ //////////////////////////////////////////
+ else if(action.type === 'CHECK_STATION') {
+  const checkedStations = state.checkedStations;
+  let checkedStationsIds;
+  const newStation = action.payload;
+  const isInCheckStation = (toggledObject) => {
+   for (var i = 0; i < checkedStations.length; i++) {
+     if(checkedStations[i].id === toggledObject.id) {
+      return i
+     }
+   }
+   return false;
+  };
 
+  if(isInCheckStation(newStation) === false) {
+   checkedStations.push(newStation)
+   checkedStationsIds = state.checkedStationsIds.concat(newStation.id);
+  } else {
+   checkedStations.splice(isInCheckStation(newStation), 1)
+   checkedStationsIds = state.checkedStationsIds.filter((id) => id !== newStation.id);
+  }
+  return Object.assign({}, state, {
+    checkedStations: checkedStations,
+    checkedStationsIds: checkedStationsIds
+  })
+ }
 
  return state;
 }

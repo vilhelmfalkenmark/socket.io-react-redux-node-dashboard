@@ -30,17 +30,23 @@ export function searchStations(stationQuery) {
   }
 }
 
-export function deleteStation(stationID) {
+export function deleteStation(stationIDObject) {
   return function(dispatch) {
-    axios.delete(`http://localhost:5000/api/stations/${stationID}`)
+    axios.delete(`http://localhost:5000/api/stations/${stationIDObject._id}`)
     .then((response) => {
-      dispatch({type: "STATION_DELETED", payload: stationID})
+      dispatch({type: "STATION_DELETED", payload: stationIDObject})
       dispatch(fetchDepartures());
 
     })
     .catch((err) => {
       dispatch({type: "COULD_NOT_DELETE_STATION", payload: err})
     })
+  }
+}
+
+export function checkStation(stationObject) {
+  return function(dispatch) {
+   dispatch({type: "CHECK_STATION", payload: stationObject})
   }
 }
 
