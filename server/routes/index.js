@@ -3,6 +3,7 @@ const today = require('./today');
 const departures = require('./departures');
 const stations = require('./stations');
 const weather = require('./weather');
+const twitter = require('./twitter');
 
 routes.get('/', (req, res) => { // <-- Will live on endpoint /api
     res.json({ message: 'Välkommen till dashboard apiet följande endpoints finns: api/today, api/stations & api/departures' });
@@ -12,5 +13,6 @@ routes.use('/today', today);
 routes.use('/departures', departures);
 routes.use('/stations', stations);
 routes.use('/weather', weather);
+routes.use('/twitter', twitter);
 
 module.exports = routes;
