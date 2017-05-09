@@ -18,17 +18,17 @@ class Departures extends Component {
   this.props.fetchDepartures();
 
   // NOTE Låt vara utkommenterat under utveckling
-  // const id = window.setInterval( () => {
-  //  this.props.fetchDepartures();
-  //  }, 30000);
-  //
-  //  this.setState({
-  //   intervalID: id
-  //  })
+  const id = window.setInterval( () => {
+   this.props.fetchDepartures();
+  }, 20000);
+
+   this.setState({
+    intervalID: id
+   })
  }
 
  componentWillUnmount() {
-  // window.clearInterval(this.state.intervalID);
+  window.clearInterval(this.state.intervalID);
  }
 
 

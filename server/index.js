@@ -12,8 +12,10 @@ mongoose.connect('mongodb://localhost/dashboard_app');
 //////////////////////////////////////////
 // SOCKET API
 //////////////////////////////////////////
-const socket = require("./socket");
+// const socket = require("./socket");
 require('./socket')(io);
+
+
 
 //////////////////////////////////////////
 // REGULAR API

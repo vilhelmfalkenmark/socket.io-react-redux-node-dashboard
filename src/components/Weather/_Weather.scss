@@ -8,3 +8,27 @@
 .weather_weather_time {
   @include flex-gtr-col(2, 5px);
 }
+
+
+.wind_info {
+  display: flex;
+  align-items: center;
+}
+
+.wind_direction {
+  position: relative;
+  height: 20px;
+  width: 17px;
+  margin-left: $base;
+  display: inline-flex;
+  &:after {
+    position: absolute;
+    content: "";
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background: url("../../styles/assets/svg/arrow.svg") center center no-repeat;
+    background-size: 80%;
+  }
+}
